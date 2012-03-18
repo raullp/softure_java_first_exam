@@ -61,9 +61,25 @@ public class ArrayListTest
     }
     
     @Test
-    public void testSizeIncreases()
-    {
+    public void testSizeIncreasesForTwoElements(){
+        String firstElement = "first element";
+        String secondElement = "second element";
+        int expectedSize = 2;
         
+        list.add(firstElement);
+        list.add(secondElement);
+        
+        assertEquals(expectedSize, list.size());
+    }
+    
+    @Test
+    public void testListResizesWhenItExeedsItsCapacity() {
+        int numberOfElementsToAdd = 7;
+        
+        for(int i = 0; i < numberOfElementsToAdd; i++)
+            list.add(i);
+            
+        assertEquals(numberOfElementsToAdd, list.size());
     }
     
 }

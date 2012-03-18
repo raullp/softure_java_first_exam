@@ -1,4 +1,6 @@
 
+import java.util.Arrays;
+
 /**
  * Write a description of class ArrayList here.
  * 
@@ -11,18 +13,34 @@ public class ArrayList
     
     private Object data[];
     
-    private int size;
+    private int currentIndex;
     
     public ArrayList() {
         this.data = new Object[INITIAL_ARRAY_LIST_CAPACITY];
-        this.size = 0;
+        this.currentIndex = 0;
     }
     
     public boolean isEmpty() {
-        return size == 0;
+        return currentIndex == 0;
     }
     
     public void add(Object element) {
-        data[size++] = element;
+        int listCapacity = data.length;
+        if(currentIndex>= listCapacity)
+            resize();
+        
+        data[currentIndex++] = element;
+    }
+    
+    private void resize() {
+        int newCapactity = data.length * 2;
+        
+        Object newData [] = Arrays.copyOf(data, newCapactity);
+        
+        data = newData;
+    }
+    
+    public int size() {
+        return currentIndex;
     }
 }
